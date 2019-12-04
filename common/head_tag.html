@@ -15,10 +15,10 @@
 
     if (!_paq_loaded) {
       var u = `//${settings.host_url}/`;
-      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setTrackerUrl', u+'s']);
       _paq.push(['setSiteId', settings.website_id]);
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'s.js'; s.parentNode.insertBefore(g,s);
       _paq_loaded = true;
     }
 
@@ -29,13 +29,14 @@
 
     if (settings.subdomain_tracking) {
       const allDomains = "*" + document.domain.substring(document.domain.indexOf("."));
-      _paq.push(["setCookieDomain", allDomains]);
       _paq.push(["setDomains", allDomains]);
     }
 
+    _paq.push(["disableCookies"]);
     _paq.push(["setCustomUrl", url]);
     _paq.push(["setDocumentTitle", title]);
     _paq.push(["trackPageView"]);
     _paq.push(['enableLinkTracking']);
+    _paq.push(['enableHeartBeatTimer', 60]);
   });
 </script>
